@@ -10,7 +10,7 @@ El sistema queda al aguardo de que alguno de los sensores de las barreras se act
 
 ### Diagrama:
 
-![./recursos/Esquema.png](https://github.com/fnfortunati/Trabajo_Practico/blob/master/recursos/Esquema.PNG)
+![./recursos/Esquema.png](https://github.com/fnfortunati/Informatica2/blob/master/Trabajo%20Practico%201/recursos/Esquema.PNG)
 
 **REFERENCIA**
 
