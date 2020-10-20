@@ -7,12 +7,23 @@
 
 typedef unsigned char uint8_t;
 
+//Tipo de dato
+
 typedef struct {
-    char nombre [20];
-    char apellido [20];
+    char nombre [10];
+    char apellido [10];
     uint8_t edad;
-    char telefono [20];
+    char telefono [15];
     char mail [30];
 }persona_t;
 
-#endif
+struct pila{
+    persona_t dato;
+    struct pila *l;
+};
+
+//Prototipos de la funcion
+
+struct pila * cargar (struct pila *,struct pila *);
+
+#endif 
