@@ -26,4 +26,6 @@ struct pila{
 
 struct pila * cargar (struct pila *,struct pila *);
 
+void archivo (persona_t);
+
 #endif 
