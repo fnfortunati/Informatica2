@@ -41,3 +41,33 @@ void archivo (persona_t bf){
     fwrite (&bf, sizeof (persona_t),1,fp);
     fclose (fp);
 }
+
+void mostrar_arch (void){
+    FILE *fp;
+    persona_t bf;
+    
+    if ((fp=fopen ("../contactos.dat","rb"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+    }
+
+    fread (&bf, sizeof (persona_t),1,fp);
+    printf("\n\nImpresion de archivo\n\n");
+    while (!feof(fp)){
+        printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",bf.nombre,bf.apellido,bf.edad,bf.telefono,bf.mail);
+        fread (&bf, sizeof (persona_t),1,fp);
+    }
+    fclose (fp);
+}
+
+void mostrar_pila (struct pila *p,struct pila *aux){
+    system ("cls");
+    printf("\n");
+    printf ("NOMBRE----------APELLIDO-------EDAD-----TELEFONO-----------MAIL-----------");
+        
+    do{
+        aux=p;
+        printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",p->dato.nombre,p->dato.apellido,p->dato.edad,p->dato.telefono,p->dato.mail);
+        p=p->l;
+        free(aux);
+    }while(p!=NULL);
+}
