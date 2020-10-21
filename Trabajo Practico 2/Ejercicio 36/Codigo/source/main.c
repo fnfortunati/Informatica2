@@ -69,6 +69,7 @@ int main (void){
     while (aux){
         printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",aux->dato.apellido,aux->dato.nombre,aux->dato.edad,aux->dato.telefono,aux->dato.mail);
         aux=aux->l;
+        getchar();
     }
     free(aux);
 

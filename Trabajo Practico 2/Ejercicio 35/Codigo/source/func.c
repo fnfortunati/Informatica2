@@ -33,12 +33,32 @@ struct pila * cargar (struct pila *p, struct pila *aux){
 void archivo (persona_t bf){
     FILE *fp;
 
+    persona_t aux;
+    uint8_t flag=0;
+
     if ((fp=fopen ("../contactos.dat","ab"))==NULL){
         printf ("\nNo se pudo abrir el archivo.");
         return;
     }
 
-    fwrite (&bf, sizeof (persona_t),1,fp);
+    fclose (fp);
+
+    if ((fp=fopen ("../contactos.dat","rb+"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+        return;
+    }
+
+    fread (&aux, sizeof (persona_t),1,fp);
+
+    while (!feof (fp)){
+        if (strcmp (aux.apellido,bf.apellido)==0)
+            flag = 1;
+        fread (&aux, sizeof (persona_t),1,fp);
+    }
+
+    if (flag == 0)
+        fwrite (&bf, sizeof (persona_t),1,fp);
+
     fclose (fp);
 }
 
