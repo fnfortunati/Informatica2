@@ -25,5 +25,6 @@ struct lista{
 //Prototipos de funciones
 
 int cuenta_datos (void);
+struct lista * cargar (persona_t *,uint8_t);
 
 #endif
