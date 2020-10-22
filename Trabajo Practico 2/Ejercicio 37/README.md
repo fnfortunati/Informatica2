@@ -9,7 +9,7 @@ struct d{
     char b; //'A':Alta  'B':Baja                                                                                             
 }
 ```
-                            
+ 
 Se Pide:
 Realizar una función que pase como parámetro la clave, entre otros parámetros, y apile dos valores, la
 Clave y su posición física respecto 
