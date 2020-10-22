@@ -69,3 +69,52 @@ struct lista * cargar (persona_t *d,uint8_t cant){
 
     return p;
 }
+void archivo (persona_t bf){
+    FILE *fp;
+
+    persona_t aux;
+    uint8_t flag=0;
+
+    if ((fp=fopen ("../contactos_ordenados.dat","ab"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+        return;
+    }
+
+    fclose (fp);
+
+    if ((fp=fopen ("../contactos_ordenados.dat","rb+"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+        return;
+    }
+
+    fread (&aux, sizeof (persona_t),1,fp);
+
+    while (!feof (fp)){
+        if (strcmp (aux.apellido,bf.apellido)==0)
+            flag = 1;
+        fread (&aux, sizeof (persona_t),1,fp);
+    }
+
+    if (flag == 0)
+        fwrite (&bf, sizeof (persona_t),1,fp);
+
+    fclose (fp);
+}
+
+void mostrar_arch (void){
+    FILE *fp;
+    persona_t bf;
+    
+    if((fp=fopen("../contactos_ordenados.dat","rb"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+    }
+
+    fread (&bf, sizeof (persona_t),1,fp);
+    printf("\nImpresion de archivo\n");
+    while (!feof(fp)){
+        printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",bf.apellido,bf.nombre,bf.edad,bf.telefono,bf.mail);
+        fread (&bf, sizeof (persona_t),1,fp);
+    }
+    printf ("\n\n");
+    fclose (fp);
+}

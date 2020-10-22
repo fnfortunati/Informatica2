@@ -18,21 +18,24 @@ int main (void){
     d=(persona_t *) malloc (sizeof (persona_t) * cant);
     fread (d,sizeof (persona_t),cant,fp);
 
+    fclose(fp);
+
     //Armado de lista
     
     p = cargar (d,cant);
  
-    //Muestro la lista
+    //Armo el archivo lista
     
-    while (p){
-        printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",p->dato.apellido,p->dato.nombre,p->dato.edad,p->dato.telefono,p->dato.mail);
+    while (p){  
+        archivo (p->dato);
         p=p->l;
     }
+    
+    //Muestro la lista
+    
+    mostrar_arch ();
+
     free(p);
 
-    getchar();
-
-    //FALTA PROBAR Y ARMAR EL ARCHIVO
-
-    return 1;
+    return 0;
 }

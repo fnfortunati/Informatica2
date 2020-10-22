@@ -26,5 +26,7 @@ struct lista{
 
 int cuenta_datos (void);
 struct lista * cargar (persona_t *,uint8_t);
+void archivo (persona_t);
+void mostrar_arch (void);
 
 #endif
