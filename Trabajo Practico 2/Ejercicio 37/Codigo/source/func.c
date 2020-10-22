@@ -46,13 +46,14 @@ void cargar_arch (void){
         
         fflush (stdin);
         printf ("\nIngrese la descripcion del registro: ");
-        gets (bf.c);
+        scanf ("%s",&bf.c);
         fflush (stdin);
         printf ("\nIngrese el tipo de dato: ");
         scanf ("%d",&bf.tipo);
         bf.b = 'A';
 
         fwrite (&bf,sizeof(datos_t),1,fp);
+        
         printf ("\nEscribi");
     }
 
