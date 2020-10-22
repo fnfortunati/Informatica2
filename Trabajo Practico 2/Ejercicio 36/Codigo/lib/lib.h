@@ -25,7 +25,8 @@ struct lista{
 //Prototipos de funciones
 
 int cuenta_datos (void);
-struct lista * cargar (persona_t *,uint8_t);
+persona_t * bajar_arch (void);
+struct lista * cargar (persona_t *);
 void archivo (persona_t);
 void mostrar_arch (void);
 

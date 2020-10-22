@@ -20,9 +20,32 @@ int cuenta_datos (void){
     return c;
 }
 
-struct lista * cargar (persona_t *d,uint8_t cant){
+persona_t * bajar_arch (void){
+    persona_t *d;
+    uint8_t cant;
+
+    FILE *fp;
+
+    if((fp=fopen("../../../Ejercicio 35/Codigo/contactos.dat","rb"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+    }
+    
+    cant = cuenta_datos ();
+
+    //Bajo el archivo a memoria
+    d=(persona_t *) malloc (sizeof (persona_t) * cant);
+    fread (d,sizeof (persona_t),cant,fp);
+
+    fclose(fp);
+
+    return d;
+}
+
+struct lista * cargar (persona_t *d){
     struct lista *p=NULL,*u=NULL,*aux,*r;
-    uint8_t i;
+    uint8_t i,cant;
+
+    cant = cuenta_datos();
 
     for(i=0;i<cant;i++){
         aux=(struct lista *)malloc (sizeof(struct lista));
