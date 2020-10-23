@@ -10,7 +10,7 @@ typedef unsigned char uint8_t;
 //Tipo de dato
 
 typedef struct {
-    char nombre [10];
+    char nombre [1];
     char apellido [10];
     uint8_t edad;
     char telefono [15];
