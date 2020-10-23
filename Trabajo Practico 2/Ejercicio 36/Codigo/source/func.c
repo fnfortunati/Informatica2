@@ -41,6 +41,8 @@ persona_t * bajar_arch (void){
     return d;
 }
 
+//Creo la lista
+
 struct lista * cargar (persona_t *d){
     struct lista *p=NULL,*u=NULL,*aux,*r;
     uint8_t i,cant;
@@ -92,6 +94,9 @@ struct lista * cargar (persona_t *d){
 
     return p;
 }
+
+//Creo el archivo
+
 void archivo (persona_t bf){
     FILE *fp;
 
@@ -124,6 +129,8 @@ void archivo (persona_t bf){
     fclose (fp);
 }
 
+//Muestro el archivo con los datos ordenados
+
 void mostrar_arch (void){
     FILE *fp;
     persona_t bf;
@@ -133,7 +140,7 @@ void mostrar_arch (void){
     }
 
     fread (&bf, sizeof (persona_t),1,fp);
-    printf("\nImpresion de archivo\n");
+    
     while (!feof(fp)){
         printf ("\n%-10s\t%-10s\t%2d\t%-15s\t%-30s",bf.apellido,bf.nombre,bf.edad,bf.telefono,bf.mail);
         fread (&bf, sizeof (persona_t),1,fp);

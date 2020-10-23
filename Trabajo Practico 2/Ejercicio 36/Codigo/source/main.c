@@ -1,7 +1,7 @@
 #include "../lib/lib.h"
 
 int main (void){
-    struct lista *p; //=NULL,*u=NULL,*aux,*r;
+    struct lista *p;
 
     uint8_t cant = 0, i=0;
 
