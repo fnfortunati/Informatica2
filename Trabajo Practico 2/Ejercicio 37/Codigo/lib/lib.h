@@ -32,7 +32,9 @@ struct pila{
 void genero (void);
 void cargar_arch (void);
 struct pila * buscar_reg (void);
-struct pila * cargar (clyp);
+struct pila * cargar (struct pila *,clyp);
 
 void mostrar_arch (void);
+void mostrar_pila (struct pila *p);
+
 #endif
