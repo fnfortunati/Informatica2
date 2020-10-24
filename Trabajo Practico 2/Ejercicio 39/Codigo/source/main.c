@@ -1,12 +1,12 @@
 #include "../lib/lib.h"
 
 int main (void){
-    struct lista *p=NULL;
+    struct lista *p=NULL,*aux;
 
     p = cargar (p);
-    
-    printf ("\nCargue la lista.");
-    getchar ();
-    
-    mostrar_lista (p);
+
+    archivo (p);
+
+    mostrar_arch ();
+
 }

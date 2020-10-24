@@ -11,10 +11,16 @@ typedef struct {
     char desc[60];
     unsigned char potencia;
     unsigned int estado;
-}medicion;
+}medicion_t;
+
+typedef struct {
+    uint8_t id;
+    medicion_t dato;
+    char b;
+}pot_t;
 
 struct lista{
-    medicion dato;
+    medicion_t dato;
     struct lista *l;
 };
 
@@ -22,6 +28,7 @@ struct lista{
 //Prototipos
 
 struct lista * cargar (struct lista *);
-void mostrar_lista (struct lista  *);
+void archivo (struct lista  *);
+void mostrar_arch (void);
 
 #endif
