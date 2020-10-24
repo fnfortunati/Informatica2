@@ -19,10 +19,18 @@ typedef struct {
     char b;
 }pot_t;
 
-
+struct pila{
+    unsigned char potencia;
+    struct pila *l;
+};
 
 //Prototipos
 
-char *getKey (char *);
+void buscar_reg (void);
+char * primera (char *p);
+void actualizar_arch (pot_t,uint8_t);
+void rev_bit (void);
+struct pila * cargar_pila (struct pila *p,unsigned char);
+void arch_sec (medicion_t);
 
 #endif

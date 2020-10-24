@@ -1,23 +1,18 @@
 #include "../lib/lib.h"
 
-struct frase{    
-    char bf[40];
-};
-
 int main (void){
-    uint8_t i;
-    struct frase bf;
+    uint8_t id,opc,i;
+    pot_t bf;
+
     FILE *fp;
-    
-    char *p;
 
-    fp = fopen ("prueba.dat","wb");
+    do{
+        buscar_reg ();
+        printf ("\nQuiere buscar otro id ? 0-No 1-Si ");
+        scanf ("%d",&opc);
+    }while (opc !=0);
 
-    for (i=0;i<2;i++){
-        fflush (stdin);
-        printf ("\nIngrese dos palabras: ");
-        gets (bf.bf);
+    rev_bit();
 
-        printf ("\n\n%s",bf.bf);
-    }
+    return 0;    
 }
