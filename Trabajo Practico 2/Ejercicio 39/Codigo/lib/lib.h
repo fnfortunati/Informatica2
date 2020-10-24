@@ -28,6 +28,7 @@ struct lista{
 //Prototipos
 
 struct lista * cargar (struct lista *);
+struct lista * lista (struct lista *, struct lista **,medicion_t);
 void archivo (struct lista  *);
 void mostrar_arch (void);
 

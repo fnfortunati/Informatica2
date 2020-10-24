@@ -1,55 +1,39 @@
 #include "../lib/lib.h"
 
-//Cargo la lista
+//Levanto los datos y los carga en la lista
 
 struct lista * cargar (struct lista *p){
     struct lista *aux,*u,*r;
+    medicion_t med;
+    pot_t bf;
     uint8_t opc=0;
+
+    FILE *fp;
+
+    if ((fp=fopen ("../potencia.dat","rb"))){
+        fread (&bf,sizeof (pot_t),1,fp);
+        while (!feof (fp)){    
+            med = bf.dato;
+
+            p= lista (p,&u,med);
+            fread (&bf,sizeof (pot_t),1,fp);
+        }
+    }
+
+    fclose (fp);
 
     do{
         system ("cls");
-        aux = (struct lista *) malloc (sizeof (struct lista));
-        if (aux){
-            fflush (stdin);
-            printf ("\nIngrese la Descripcion: ");
-            scanf ("%s", &aux->dato.desc);
-            fflush (stdin);
-            printf ("\nIngrese la Potencia: ");
-            scanf ("%d",&aux->dato.potencia);
-            aux->dato.estado = aux->dato.desc[0] * aux->dato.potencia;
+          
+        fflush (stdin);
+        printf ("\nIngrese la Descripcion: ");
+        scanf ("%s", &med.desc);
+        fflush (stdin);
+        printf ("\nIngrese la Potencia: ");
+        scanf ("%d",&med.potencia);
 
-            if (p==NULL){
-                    p=u=aux;
-                    u->l=NULL;
-            }
-            else{
-                r=p;
-                while (1){
-                    if (r->dato.potencia < aux->dato.potencia){
-                        aux->l=p;
-                        p=aux;
-                        break;
-                    }
-                    while (r->l) {
-                        if(r->l->dato.potencia > aux->dato.potencia)
-                            r=r->l;
-                        else
-                            break;
-                    }
-                    if (r==u){
-                        u->l=aux;
-                        u=aux;
-                        u->l=NULL;
-                        break;
-                    }
-                    
-                    aux->l=r->l;
-                    r->l=aux;
-                    break;
-                }
-            }
-        }
-        
+        p= lista (p,&u,med);
+
         fflush (stdin);
 
         printf ("\n\nQuiere agregar a otra medicion ? 0-No   1-Si: ");
@@ -113,4 +97,50 @@ void mostrar_arch (void){
     }
     printf ("\n\n");
     fclose (fp);
+}
+
+//Funcion para cargar datos en un lista
+
+struct lista * lista (struct lista *p, struct lista **u,medicion_t dato){
+    struct lista *aux,*r;
+    
+    aux = (struct lista *) malloc (sizeof (struct lista));
+    if (aux){
+        strcpy (aux->dato.desc,dato.desc);
+        aux->dato.potencia = dato.potencia;
+        aux->dato.estado = aux->dato.desc[0] * aux->dato.potencia;
+
+        if (p==NULL){
+            p=*u=aux;
+            (*u)->l=NULL;
+        }
+        else{
+            r=p;
+            while (1){
+                if (r->dato.potencia < aux->dato.potencia){
+                    aux->l=p;
+                    p=aux;
+                    break;
+                }
+                while (r->l) {
+                    if(r->l->dato.potencia > aux->dato.potencia)
+                        r=r->l;
+                    else
+                        break;
+                }
+                if (r==*u){
+                    (*u)->l=aux;
+                    *u=aux;
+                    (*u)->l=NULL;
+                    break;
+                }
+                    
+                aux->l=r->l;
+                r->l=aux;
+                break;
+            }
+        }
+    }
+    
+    return p;
 }
