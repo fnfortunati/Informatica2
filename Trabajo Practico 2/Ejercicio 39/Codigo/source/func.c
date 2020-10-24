@@ -27,7 +27,7 @@ struct lista * cargar (struct lista *p){
           
         fflush (stdin);
         printf ("\nIngrese la Descripcion: ");
-        scanf ("%s", &med.desc);
+        gets (med.desc);
         fflush (stdin);
         printf ("\nIngrese la Potencia: ");
         scanf ("%d",&med.potencia);
