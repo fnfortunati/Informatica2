@@ -3,27 +3,42 @@
 //Busco la primera palabra y la invierto
 
 char * primera (char *p){
-    uint8_t i,cant;
-    char palabra [60]=" ";
+    uint8_t i;
+    char palabra [60]=" ", aux[60];
+    char *s;
 
     for (i=0;*(p+i)!= ' '; i++)
         palabra[i] = p[i];
-    
-    p = palabra;
 
-    printf ("\nLa primera palabra es: %s\n",p);
+    p = &palabra [0];
 
-    //Falta terminar
-    
-    return p;
+    s = aux;
+
+    while (*p)
+        p++;
+    p--;
+
+    while (s!= &palabra [0]){
+        *s = *p;
+        p--;
+        s++;
+    }
+
+    *s=*p;
+    s++;
+    *s=0;
+
+    printf ("\nLa palabra invertida es: %s",aux);
+    getchar ();
 }
+
 
 //Busco el registro por el id
 
 void buscar_reg (void){
     uint8_t id;
     pot_t bf;
-    char *p;
+    char *p=NULL;
 
     FILE *fp;
 
@@ -42,10 +57,10 @@ void buscar_reg (void){
     fread (&bf, sizeof (pot_t),1,fp);
     
     if (bf.id == id){    
-        p=primera (bf.dato.desc);
-        printf ("\n%d",bf.dato.estado);
+        p = primera (bf.dato.desc);
+        printf ("\n%s",p);
+        getchar ();
         bf.dato.estado = bf.dato.estado ^(1<<3);
-        printf ("\n%d",bf.dato.estado);
     }
     else{
         printf ("\nNo se encontro registro");
@@ -54,7 +69,7 @@ void buscar_reg (void){
 
     fclose (fp);
 
-    actualizar_arch (bf,id);
+//    actualizar_arch (bf,id);
 }
 
 //Actualizo el archivo "potencia.dat"
@@ -134,7 +149,7 @@ void arch_sec (medicion_t reg){
         printf ("\nNo se puede abrir el archivo.");
         return;
     }
-
+    
     fwrite (&reg,sizeof (medicion_t),1,fp);
 
     fclose (fp);
