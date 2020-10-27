@@ -50,3 +50,64 @@ Los siguientes ejercicios seran resueltos en cada una de las carpetas correspond
      Utilizando el archivo “potencia.dat” creado en el __Ejercicio 39__, realizar una función que pase como parámetro, entre otros datos, la clave del registro (id). 
      
      La función ubicará el registro correspondiente al id pasado como parámetro, y utilizando punteros imprimirá la primera palabra del campo "desc" en forma inversa, además cambiará el estado del bit 3 para luego actualizar el archivo. Además, se agregará a una pila la potencia cuando los bits 0 y 2, del campo estado, estén encendidos, en caso contrario se agregará el registro al archivo “salida.dat” de organización secuencial.
+
+     - __EJERCICIO 41__: 
+
+    El depósito de la empresa __*CosmeFulanito*__ necesita cargar su stock de repuestos en forma ordenada. Para dicha tarea se solicitó categorizar a los respuestos bajo la siguiente estructura de datos:
+     ```c
+    typedef struct{
+        long partNumber;
+        long serialNumber;
+        char descripcion[40];       
+        chat ubicacion[100];        
+    }repuestos_t;
+    ```
+    Los repuestos no están ordenados, se solicita cargarlos en una lista, la cual ordene por descripción a los repuestos para luego guardarlos en un archivo de *stock* con organización secuencial.
+    
+    > - Imprimir en pantalla la lista con cada inserción. 
+    > - El archivo se generará cuando el usuario decide no cargar mas productos.
+- __EJERCICIO 42__:
+
+     El proveedor de repuestos de __*CosmeFulanito*__ informó que una partida de repuestos salió con falla y debe ser devuelta. Para identificar la partida, el proveedor indicó que la falla fue en el partNumber: 1234 que tiene números de serie con el bit 3 y 5 en 1.
+
+    Para estas tareas se solicita:
+    - Hacer una cola con todos los registros fallados
+    - Realizar la baja física a todos los repuestos fallados 
+    - Crear un archivo donde se vuelque el contenido de la cola en orden inverso.
+
+- __EJERCICIO 43__:
+
+    El servicio técnico de __*CosmeFulanito*__ recibe órdenes de trabajo diarias. Las mismas son cargadas en un archivo secuencial por el personal de recepción bajo la siguiente estructura de datos:
+     ```c
+    typedef struct{
+        long numeroDeOrden;
+        char cliente[40];       
+        char descripciondeFalla[200];        
+        char modelo[65];
+        char fecha[10];
+        char hora[10];
+    }repuestos_t;
+    ```
+    Se pide:
+    - Hacer una pila con las órdenes de trabajo de forma tal que la más vieja sea la última en cargarse.
+
+- __EJERCICIO 44__:
+
+    El servicio técnico utiliza la pila generada en el ejercicio 43 en su labor diaria. Cada técnico toma una tarea de la pila y genera un orden de extracción de repuestos al depósito. Para optimizar los viajes al depósito se arma una lista con los repuestos que cada orden necesita utilizando la siguiente estructura:
+
+    ```c
+    typedef struct{
+        repuestos_t repuesto;        
+        int cantidad;
+    }extraccionRepuestos_t;
+    ```
+
+    Se pide cargar la lista de repuestos solicitados por los técnicos. Tener en cuenta que varios técnicos pueden necesitar la misma parte, y en esos casos se debe incrementar la cantidad pedida en la lista. 
+ 
+
+- __EJERCICIO 45__:
+    
+    La lista creada en el ejercicio 44 es procesada por el depósito. 
+    Para dicha tarea se pide hacer un programa que:
+    - Descuente las cantidades solicitadas del archivo de stock, creado en el __Ejercicio 41__.
+    - Hacer una cola con los repuestos en los que no se encontró stock suficiente para poder notificar a los clientes la demora de la reparación. 
