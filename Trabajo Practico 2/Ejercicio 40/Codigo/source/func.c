@@ -28,10 +28,8 @@ char * primera (char *p){
     s++;
     *s=0;
 
-    printf ("\nLa palabra invertida es: %s",aux);
-    getchar ();
+    return s;
 }
-
 
 //Busco el registro por el id
 

@@ -12,7 +12,7 @@ int main (void){
         scanf ("%d",&opc);
     }while (opc !=0);
 
-   rev_bit();
+   //rev_bit();
 
     return 0;    
 }
