@@ -7,7 +7,6 @@ struct lista * cargar (struct lista *p){
     struct lista *u = NULL;
 
     system ("cls");
-
     fflush (stdin);
     printf ("\nIngrese el Numero de parte: ");
     scanf ("%ld",&aux.partNumber);

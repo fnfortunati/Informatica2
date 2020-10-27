@@ -1,7 +1,6 @@
 - __EJERCICIO 41__: 
 
 El depósito de la empresa __*CosmeFulanito*__ necesita cargar su stock de repuestos en forma ordenada. Para dicha tarea se solicitó categorizar a los respuestos bajo la siguiente estructura de datos:
-
  ```c
 typedef struct{
     long partNumber;

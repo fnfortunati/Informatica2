@@ -6,7 +6,6 @@ int main (void){
     
     do{
         p = cargar (p);
-
         fflush (stdin);
         printf ("\n\nDesea cargar otra pieza ? 0-No 1-Si ");
         scanf ("%d",&opc);
