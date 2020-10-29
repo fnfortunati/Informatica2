@@ -11,5 +11,9 @@ int main (void){
         printf ("\n\nDesea cargar otra pieza ? 0-No 1-Si ");
         scanf ("%d",&opc);
     }while (opc != 0);
-    return 0; 
+    return 0;
+
+    cargo_arch (&p);
+
+    return 0;
 }
