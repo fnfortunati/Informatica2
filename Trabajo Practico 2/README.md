@@ -22,8 +22,7 @@ Los siguientes ejercicios seran resueltos en cada una de las carpetas correspond
     unsigned char tipo; //Tipo de datos como entero sin signo                                                                                                                                            
     char b; //'A':Alta 'B':Baja                                                                                                                                                                          
     }
-    ```
-                            
+    ```                      
     Se Pide:
     Realizar una funciún que pase como parámetro la clave, entre otros parámetros, y apile dos valores, la Clave y su posición física respecto 
     al archivo (registro 1, 2, etc), si es que el campo tipo tiene el bit 4 con valor 1. En caso de no encontrarlo mostrar por pantalla "Registro no encontrado".
