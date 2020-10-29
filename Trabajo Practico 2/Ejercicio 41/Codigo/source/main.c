@@ -5,7 +5,7 @@ int main (void){
     struct lista *p=NULL;
     
     do{
-        p = cargar (p);
+        cargar (&p);
         
         fflush (stdin);
         printf ("\n\nDesea cargar otra pieza ? 0-No 1-Si ");

@@ -22,7 +22,9 @@ struct lista {
 
 //Prototipos
 
-struct lista * cargar (struct lista *);
+void cargar (struct lista **);
 struct lista * listar (struct lista *,struct lista **, repuestos_t);
 void muestro_lista (struct lista *);
+void cargo_arch (struct lista **);
+
 #endif

@@ -1,10 +1,12 @@
 #include "../lib/lib.h"
 
-struct lista * cargar (struct lista *p){
+void cargar (struct lista **p){
     repuestos_t aux;
     uint8_t opc;
 
-    struct lista *u = NULL;
+    struct lista *s,*u = NULL;
+
+    s = *p;
 
     system ("cls");
     fflush (stdin);
@@ -19,11 +21,11 @@ struct lista * cargar (struct lista *p){
     printf ("\nIngrese la Ubicacion: ");
     gets (aux.ubicacion);
 
-    p = listar (p,&u,aux);
+    s = listar (s,&u,aux);
 
-    muestro_lista (p);
+    muestro_lista (s);
 
-    return p;
+    *p = s;
 }
 
 struct lista * listar (struct lista *p,struct lista **u, repuestos_t dato){
@@ -76,4 +78,26 @@ void muestro_lista (struct lista *p){
         printf ("\n%-4d\t%-4d\t%-15s\t%-15s", p->info.partNumber,p->info.serialNumber,p->info.descripcion,p->info.ubicacion);
         p=p->l;
     }
+}
+
+void cargo_arch (struct lista **p){
+    struct lista *aux;
+    repuestos_t bf;
+
+    FILE *fp;
+
+    if ((fp=fopen ("../stock.dat","ab"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+        getchar ();
+    }
+
+    while (*p){
+        aux = *p;
+        bf = aux->info;
+
+        fwrite (&bf,sizeof(repuestos_t),1,fp);
+        *p = (*p)->l;
+        free (aux);
+    }
+    fclose (fp);
 }
