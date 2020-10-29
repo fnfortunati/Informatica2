@@ -2,33 +2,35 @@
 
 //Busco la primera palabra y la invierto
 
-char * primera (char *p){
+void primera (char *p){
     uint8_t i;
-    char palabra [60]=" ", aux[60];
+    char palabra [60]=" ", aux[60]=" ";
     char *s;
 
     for (i=0;*(p+i)!= ' '; i++)
         palabra[i] = p[i];
-
+    
     p = &palabra [0];
 
     s = aux;
 
+    //Cuenta la longitud de la primera palabra
+
     while (*p)
         p++;
-    p--;
+    p--; //Me pongo una posicion antes del fin de la palabra
 
     while (s!= &palabra [0]){
-        *s = *p;
+        *s = *p; 
         p--;
         s++;
     }
 
     *s=*p;
     s++;
-    *s=0;
+    *s= 0;
 
-    return s;
+    p = aux;
 }
 
 //Busco el registro por el id
@@ -36,7 +38,7 @@ char * primera (char *p){
 void buscar_reg (void){
     uint8_t id;
     pot_t bf;
-    char *p=NULL;
+    char p;
 
     FILE *fp;
 
@@ -54,9 +56,11 @@ void buscar_reg (void){
     fseek (fp,(long)sizeof (pot_t)*(id-1),0);
     fread (&bf, sizeof (pot_t),1,fp);
     
-    if (bf.id == id){    
-        p = primera (bf.dato.desc);
-        printf ("\n%s",p);
+    if (bf.id == id){
+        printf ("\nAntes: %s",bf.dato.desc);
+        getchar ();
+        primera (bf.dato.desc);
+        printf ("\nDespues: %s",bf.dato.desc);
         getchar ();
         bf.dato.estado = bf.dato.estado ^(1<<3);
     }
