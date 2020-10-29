@@ -27,7 +27,7 @@ struct pila{
 //Prototipos
 
 void buscar_reg (void);
-char* primera (char *p);
+void primera (char *p);
 void actualizar_arch (pot_t,uint8_t);
 void rev_bit (void);
 struct pila * cargar_pila (struct pila *p,unsigned char);
