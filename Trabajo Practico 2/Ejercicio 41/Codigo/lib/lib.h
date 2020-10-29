@@ -11,7 +11,8 @@ typedef struct{
     long partNumber;
     long serialNumber;
     char descripcion[40];       
-    char ubicacion[100];        
+    char ubicacion[100]; 
+    char estatus;      
 }repuestos_t;
 
 struct lista {

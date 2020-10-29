@@ -20,6 +20,7 @@ void cargar (struct lista **p){
     gets (aux.descripcion);
     printf ("\nIngrese la Ubicacion: ");
     gets (aux.ubicacion);
+    aux.estatus = 'A';
 
     s = listar (s,&u,aux);
 
