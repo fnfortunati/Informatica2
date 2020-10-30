@@ -17,9 +17,14 @@ typedef struct{
     char estado;
 }repuestos_t;
 
-struct cola {
+struct pila {
     repuestos_t info;
-    struct cola *ant,*sig;
+    struct pila *l;
+};
+
+struct lista{
+    repuestos_t info;
+    struct lista *l;
 };
 
 
@@ -29,4 +34,8 @@ uint8_t menu (void);
 void crear_arch (void);
 void carga (void);
 void reparado (void);
+struct pila * apilar (void);
+struct lista * ordenar (struct lista *);
+void mostrar_pila (struct pila *);
+
 #endif

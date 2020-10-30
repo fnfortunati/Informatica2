@@ -3,6 +3,8 @@
 int main (void){
     uint8_t opc;
 
+    struct pila *p;
+
     crear_arch ();
     
     do{
@@ -16,4 +18,10 @@ int main (void){
             break;
         }
     }while (opc != 3);
+
+    p = apilar ();
+
+    mostrar_pila (p);
+
+    return 0;
 }

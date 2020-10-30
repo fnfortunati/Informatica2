@@ -101,3 +101,90 @@ void reparado (void){
 
     fclose (fp);
 }
+
+struct pila * apilar (void){
+    struct pila *p=NULL,*aux;
+    struct lista *u=NULL,*del;
+
+    u = ordenar (u);
+
+    while (u){
+        aux = (struct pila *)malloc (sizeof (struct pila));
+        del = u;
+        if (aux){
+            aux->info = u->info;
+            aux->l = p;
+            p = aux;
+        }
+        u=u->l;
+        free (del);
+    }
+}
+
+struct lista * ordenar (struct lista *p){
+    repuestos_t bf;
+    struct lista *u,*r,*aux;
+
+    FILE *fp;
+
+    if ((fp=fopen ("../ordenes.dat","rb"))==NULL){
+        printf ("\nNo se pudo abrir el archivo.");
+        getchar ();
+    }
+
+    fread (&bf,sizeof (repuestos_t),1,fp);
+
+    while (!feof (fp)){
+        aux = (struct lista *)malloc (sizeof (struct lista));
+
+        if (aux){
+            aux->info = bf;
+
+            if (p == NULL){
+                p=u=aux;
+                u->l=NULL;
+            }
+            else{
+                r=p;
+                while (1){
+                    if ((strcmp (r->info.fecha,aux->info.fecha))>0)
+                        if ((strcmp (r->info.hora,aux->info.hora))>0){
+                            aux->l = p;
+                            p=aux;
+                            break;
+                        }   
+                    while (r->l){
+                        if((strcmp(r->l->info.fecha,aux->info.fecha))<0)
+                            if((strcmp(r->l->info.hora,aux->info.hora))<0)
+                                r=r->l;
+                        else
+                            break;
+                    }
+                    if (r==u){
+                            u->l=aux;
+                            u=aux;
+                            u->l=NULL;
+                            break;
+                    }
+                    aux->l=r->l;
+                    r->l=aux;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+void mostrar_pila (struct pila *p){
+    struct pila *aux;
+
+    system ("cls");
+    printf("\n");
+        
+    do{
+        aux=p;
+        printf ("\n%-ld\t%-s\t%-s\t%s\t%s\t%s",p->info.numeroDeOrden,p->info.cliente,p->info.descripciondeFalla,p->info.modelo,p->info.fecha,p->info.hora);
+        p=p->l;
+        free(aux);
+    }while(p!=NULL);
+}
