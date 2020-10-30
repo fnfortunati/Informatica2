@@ -15,15 +15,15 @@ typedef struct{
     char fecha[10];
     char hora[10];
     char estado;
-}repuestos_t;
+}fallas_t;
 
 struct pila {
-    repuestos_t info;
+    fallas_t info;
     struct pila *l;
 };
 
 struct lista{
-    repuestos_t info;
+    fallas_t info;
     struct lista *l;
 };
 

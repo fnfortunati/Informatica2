@@ -26,7 +26,7 @@ void crear_arch (void){
 }
 
 void carga (void){
-    repuestos_t aux, bf;
+    fallas_t aux, bf;
 
     FILE *fp;
     system ("cls");
@@ -39,7 +39,7 @@ void carga (void){
     printf ("\nIngrese el Numero de Orden: ");
     scanf ("%ld",&aux.numeroDeOrden);
     
-    fread (&bf,sizeof (repuestos_t),1,fp);
+    fread (&bf,sizeof (fallas_t),1,fp);
 
     if (bf.numeroDeOrden == aux.numeroDeOrden){
         printf ("\nNumero de orden existente.");
@@ -59,14 +59,14 @@ void carga (void){
         aux.estado = 'P';   //Pendiente de reparacion
     }
 
-    fwrite (&aux,sizeof (repuestos_t),1,fp);
+    fwrite (&aux,sizeof (fallas_t),1,fp);
 
     fclose (fp);
 }
 
 void reparado (void){
     long aux;
-    repuestos_t bf;
+    fallas_t bf;
 
     FILE *fp;
 
@@ -78,15 +78,15 @@ void reparado (void){
     printf ("\nIngrese el Numero de Orden: ");
     scanf ("%ld",&aux);
     
-    fread (&bf,sizeof (repuestos_t),1,fp); 
+    fread (&bf,sizeof (fallas_t),1,fp); 
 
     while (!feof (fp)){
         if (bf.numeroDeOrden == aux)
             if (bf.estado == 'P'){
                 bf.estado = 'R';
                 printf ("\nSe cambio el estado de esa orden.");
-                fseek (fp,(-1L)*(sizeof (repuestos_t)),1);
-                fwrite (&bf,sizeof (repuestos_t),1,fp);
+                fseek (fp,(-1L)*(sizeof (fallas_t)),1);
+                fwrite (&bf,sizeof (fallas_t),1,fp);
                 getchar ();
             }
             else{
@@ -122,7 +122,7 @@ struct pila * apilar (void){
 }
 
 struct lista * ordenar (struct lista *p){
-    repuestos_t bf;
+    fallas_t bf;
     struct lista *u,*r,*aux;
 
     FILE *fp;
@@ -132,7 +132,7 @@ struct lista * ordenar (struct lista *p){
         getchar ();
     }
 
-    fread (&bf,sizeof (repuestos_t),1,fp);
+    fread (&bf,sizeof (fallas_t),1,fp);
 
     while (!feof (fp)){
         aux = (struct lista *)malloc (sizeof (struct lista));
