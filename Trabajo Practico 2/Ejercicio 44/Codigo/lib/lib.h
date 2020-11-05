@@ -8,16 +8,6 @@
 typedef unsigned char uint8_t;
 
 typedef struct{
-    long numeroDeOrden;
-    char cliente[40];       
-    char descripciondeFalla[200];        
-    char modelo[65];
-    char fecha[10];
-    char hora[10];
-    char estado;
-}fallas_t;
-
-typedef struct{
     long partNumber;
     long serialNumber;
     char descripcion[40];       
@@ -29,9 +19,17 @@ typedef struct{
     int cantidad;
 }extraccionRepuestos_t;
 
+struct lista{
+    extraccionRepuestos_t dato;
+    struct lista *ant;
+    struct lista *sig;
+};
 
 //Prototipos
 
-
+uint8_t menu (void);
+void cargar (extraccionRepuestos_t);
+uint8_t buscar (extraccionRepuestos_t, struct lista *);
+struct lista * listar (struct lista *, struct lista **, extraccionRepuestos_t);
 
 #endif
